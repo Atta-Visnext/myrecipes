@@ -23,7 +23,7 @@
 }
 
 #logo:hover {
-	color: #fff;
+	color: white;
 	text-decoration: none;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .btn-xlarge:hover {
-	color: #fff;
+	color: white;
 	text-decoration: none;
 }
 
@@ -87,3 +87,12 @@ footer ul li{
     color: white;
 
 }
+
+.recipe_actions {
+	padding-top: 5px;
+
+	a{
+		color: white;
+	}
+}
+ 
