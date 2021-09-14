@@ -1,6 +1,7 @@
 <%= render 'shared/pages_title', title: "Showing all Chefs" %>
 
 <div align="center">
+	<%= will_paginate %>
 	<% @chefs.each do |chef| %>
 		<ul class="listing">
 			<div class="row bg-light p-5 ">
@@ -15,5 +16,5 @@
 		</ul>
 
 	<% end %>
-	
+	<%= will_paginate %>
 </div>
