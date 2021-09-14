@@ -13,19 +13,22 @@
         <li class="nav-item">
           <li class="nav-link active"><%= link_to "Chefs", chefs_path %></li>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Recipes
-          </a>
-          <ul class="dropdown-menu center color-dark" aria-labelledby="navbarDropdown">
-            <li class="dropdown-item"><%= link_to "Create new Recipe", new_recipe_path %></li>
-            <li><a class="dropdown-item" href="#"><li>Another</li></a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
+
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Recipes
+            </a>
+            <ul class="dropdown-menu center color-dark" aria-labelledby="navbarDropdown">
+              <li class="dropdown-item"><%= link_to "Create new Recipe", new_recipe_path %></li>
+              <li><a class="dropdown-item" href="#"><li>Another</li></a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        <% end %>  
+        <li class="nav-link">
+          <%= link_to "All recipes", recipes_path%>
         </li>
       </ul>
       <form class="d-flex">
@@ -33,19 +36,23 @@
         <button class="btn btn-outline-success bg-light" type="submit" >Search</button>
       </form>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
+        <% if logged_in? %>
+
+        
+          <li class="nav-item dropdown center">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_chef.chefname.capitalize %>'s Profile
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li class="dropdown-item"><%= link_to "View your profile", chef_path(current_chef) %></li>
+              <li class="dropdown-item"><%= link_to "Edit your profile", edit_chef_path(current_chef) %></li>
+              <li><hr class="dropdown-divider"></li>
+              <li class="dropdown-item center"><%= link_to "log out",logout_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="nav-link"><%= link_to "Log in", login_path %></li>
+        <% end %>
       </ul>
     </div>
   </div>
